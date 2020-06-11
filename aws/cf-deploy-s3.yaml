@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  JokeLangBucketPolicy:
+    Type: "AWS::S3::BucketPolicy"
+    Properties:
+      Bucket: !Ref JokeLangBucket
+      PolicyDocument:
+        Id: MyPolicy
+        Version: 2012-10-17
+        Statement:
+          - Sid: PublicReadForGetBucketObjects
+            Effect: Allow
+            Principal: "*"
+            Action: "s3:GetObject"
+            Resource: !Join
+              - ""
+              - - "arn:aws:s3:::"
+                - !Ref JokeLangBucket
+                - /*
+  JokeLangBucket:
+    Type: "AWS::S3::Bucket"
+    Properties:
+      AccessControl: PublicRead
+      WebsiteConfiguration:
+        IndexDocument: "index.html"
+        ErrorDocument: "error.html"
