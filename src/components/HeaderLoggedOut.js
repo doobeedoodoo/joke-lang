@@ -9,10 +9,11 @@ function HeaderLoggedOut(props) {
     e.preventDefault()
     try {
       const user = await Auth.signIn(username, password)
-      console.log("Login successful." + JSON.stringify(user))
+      console.log("Login successful for user " + JSON.stringify(user.username))
+      localStorage.setItem("jokeLangUsername", user.username)
       props.setLoggedIn(true)
     } catch (e) {
-      console.log("There was an error logging in.")
+      console.log("There was an error logging in.", e)
     }
   }
 

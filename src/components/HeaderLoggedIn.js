@@ -1,6 +1,17 @@
 import React, { useEffect } from "react"
+import { Auth } from "aws-amplify"
 
 function HeaderLoggedIn(props) {
+  async function signOut() {
+    props.setLoggedIn(false)
+    localStorage.removeItem("jokeLangUsername")
+    try {
+      await Auth.signOut()
+    } catch (e) {
+      console.log("There was an error signing out.")
+    }
+  }
+
   return (
     <div className="flex-row my-3 my-md-0">
       <a href="#" className="text-white mr-2 header-search-icon">
@@ -11,12 +22,13 @@ function HeaderLoggedIn(props) {
         <span className="chat-count-badge text-white"> </span>
       </span>
       <a href="#" className="mr-2">
-        <img className="small-header-avatar" src="https://gravatar.com/avatar/b9408a09298632b5151200f3449434ef?s=128" />
+        {/* TODO: CHANGE AVATAR */}
+        <img className="small-header-avatar" src={localStorage.getItem("jokeLangAvatar")} />
       </a>
       <a className="btn btn-sm btn-success mr-2" href="/create-post">
         Create Post
       </a>
-      <button onClick={() => props.setLoggedIn(false)} className="btn btn-sm btn-secondary">
+      <button onClick={signOut} className="btn btn-sm btn-secondary">
         Sign Out
       </button>
     </div>
