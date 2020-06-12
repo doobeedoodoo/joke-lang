@@ -7,6 +7,11 @@ import Footer from "./components/Footer"
 import About from "./components/About"
 import Terms from "./components/Terms"
 
+import Amplify from "aws-amplify"
+import aws_exports from "./aws-exports"
+
+Amplify.configure(aws_exports)
+
 function App() {
   return (
     <BrowserRouter>

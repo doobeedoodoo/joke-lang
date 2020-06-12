@@ -1,0 +1,10 @@
+{
+	"auth": {
+		"jokelangcbdd43c4": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false
+		}
+	}
+}

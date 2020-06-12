@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-jokelang-dev-94704-authRole",
+            "UnauthRoleArn": "arn:aws:iam::442276569065:role/amplify-jokelang-dev-94704-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::442276569065:role/amplify-jokelang-dev-94704-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-jokelang-dev-94704-deployment",
+            "UnauthRoleName": "amplify-jokelang-dev-94704-unauthRole",
+            "StackName": "amplify-jokelang-dev-94704",
+            "StackId": "arn:aws:cloudformation:us-east-1:442276569065:stack/amplify-jokelang-dev-94704/a23a7cb0-ac4e-11ea-9edf-0e6b672d4ae7",
+            "AmplifyAppId": "do76vwb0yn4zj"
+        },
+        "categories": {
+            "auth": {
+                "jokelangcbdd43c4": {}
+            }
+        }
+    }
+}
