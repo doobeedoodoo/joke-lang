@@ -2,12 +2,13 @@ import React, { useState } from "react"
 import Page from "./Page"
 import { Auth } from "aws-amplify"
 
-function HomeGuest() {
+function HomeGuest(props) {
   const [username, setUsername] = useState()
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
   const [confirmationCode, setConfirmationCode] = useState()
   const [isSignedUp, setSignedUp] = useState(false)
+  const [isConfirmed, setConfirmed] = useState(false)
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -29,6 +30,7 @@ function HomeGuest() {
       try {
         await Auth.confirmSignUp(username, confirmationCode)
         console.log("Confirmation code verified.")
+        setConfirmed(true)
       } catch (e) {
         console.log("There was an error verifying the confirmation code.", e)
       }
@@ -43,7 +45,7 @@ function HomeGuest() {
           <p className="lead text-muted">I-share mo yan!</p>
         </div>
         <div className="col-lg-5 pl-lg-5 pb-3 py-lg-5">
-          {!isSignedUp && (
+          {!isSignedUp && !isConfirmed && (
             <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label htmlFor="username-register" className="text-muted mb-1">
@@ -68,7 +70,7 @@ function HomeGuest() {
               </button>
             </form>
           )}
-          {isSignedUp && (
+          {isSignedUp && !isConfirmed && (
             <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label htmlFor="confirmationcode" className="text-muted mb-1">
@@ -80,6 +82,11 @@ function HomeGuest() {
                 Register!
               </button>
             </form>
+          )}
+          {isConfirmed && (
+            <div>
+              <h3>Registration successful!</h3>
+            </div>
           )}
         </div>
       </div>
